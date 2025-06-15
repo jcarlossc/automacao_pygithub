@@ -1,15 +1,23 @@
-from github import Github
+from github import Github, GithubException
 
 class AutomacaoGithub:
     
     def __init__(self, TOKEN) -> None:
         self.token = TOKEN
         self.github_objeto = Github(TOKEN)
+        try:
+            self.usuario = self.github_objeto.get_user()
+        except GithubException as e:    
+            raise RuntimeError(f"Erro de autenticação: {e}")
 
     def listar_repositorios(self) -> None:    
-        usuario = self.github_objeto.get_user()
-        for i, repositorio in enumerate(usuario.get_repos(), start = 1):
-            print(f"{i}. {repositorio.name} | {'Privado' if repositorio.private else 'Público'} | {repositorio.html_url}")
+        # usuario = self.github_objeto.get_user()
+        try:
+            for i, repositorio in enumerate(self.usuario.get_repos(), start = 1):
+                print(f"{i}. {repositorio.name} | {'Privado' if repositorio.private else 'Público'} | {repositorio.html_url}")
+        
+        except GithubException as e:
+            raise RuntimeError(f"Erro ao listar repositórios: {e}")
 
     def criar_repositorio(self, nome: str, descricao: str) -> None:
         usuario = self.github_objeto.get_user()
