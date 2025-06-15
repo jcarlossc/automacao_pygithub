@@ -41,29 +41,32 @@ class AutomacaoGithub:
             raise RuntimeError(f"Erro ao criar README.md em '{repositorio.name}': {e}")
 
     def criar_gitignore_python(self, nome_repositorio: str) -> None:  
-        usuario = self.github_objeto.get_user()
-        repositorio = usuario.get_repo(nome_repositorio)   
-        conteudo_gitignore = """
-        # Byte-compiled / optimized / DLL files
-        __pycache__/
-        *.py[cod]
-        *.so
+        try:
+            repositorio = self.usuario.get_repo(nome_repositorio)   
+            conteudo_gitignore = """
+            # Byte-compiled / optimized / DLL files
+            __pycache__/
+            *.py[cod]
+            *.so
 
-        # Virtual environment
-        venv/
-        env/
+            # Virtual environment
+            venv/
+            env/
 
-        # VS Code
-        .vscode/
-        """
-        repositorio.create_file(
-            path=".gitignore",
-            message="Adiciona arquivo .gitignore padrão para Python",
-            content=conteudo_gitignore,
-            branch="main"
-        )
+            # VS Code
+            .vscode/
+            """
+            repositorio.create_file(
+                path=".gitignore",
+                message="Adiciona arquivo .gitignore padrão para Python",
+                content=conteudo_gitignore,
+                branch="main"
+            )
 
-        print("Aquivo .gitignore criado com sucesso")
+            print("Aquivo .gitignore criado com sucesso")
+
+        except GithubException as e:
+            raise RuntimeError(f"Erro ao criar .gitignore em '{repositorio.name}': {e}")
 
     def excluir_repositorio(self, nome_repositorio: str) -> None:   
         usuario = self.github_objeto.get_user()
