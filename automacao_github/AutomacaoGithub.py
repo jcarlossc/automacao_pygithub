@@ -19,3 +19,10 @@ class AutomacaoGithub:
             private = False
         )
         print(f"Repositório criado: {novo_repositorio.html_url}")
+
+    def criar_readme(self, repositorio: str, conteudo: str) -> None:
+        usuario = self.github_objeto.get_user()
+        repositorio = usuario.get_repo(repositorio)
+        content = conteudo
+        repositorio.create_file("README.md", 'Adicionando README', content)
+        print(f"Arquivo README criado com sucesso!")
