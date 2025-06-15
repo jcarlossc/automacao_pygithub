@@ -50,4 +50,10 @@ class AutomacaoGithub:
             branch="main"
         )
 
-        print("Repositório criado com .gitignore!")
+        print("Aquivo .gitignore criado com sucesso")
+
+    def excluir_repositorio(self, nome_repositorio: str) -> None:   
+        usuario = self.github_objeto.get_user()
+        repositorio = usuario.get_repo(nome_repositorio)
+        repositorio.delete()
+        print("Repositório excluído com sucesso!")      
