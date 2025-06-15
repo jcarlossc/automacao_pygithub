@@ -11,7 +11,6 @@ class AutomacaoGithub:
             raise RuntimeError(f"Erro de autenticação: {e}")
 
     def listar_repositorios(self) -> None:    
-        # usuario = self.github_objeto.get_user()
         try:
             for i, repositorio in enumerate(self.usuario.get_repos(), start = 1):
                 print(f"{i}. {repositorio.name} | {'Privado' if repositorio.private else 'Público'} | {repositorio.html_url}")
