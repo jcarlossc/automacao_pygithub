@@ -69,7 +69,10 @@ class AutomacaoGithub:
             raise RuntimeError(f"Erro ao criar .gitignore em '{repositorio.name}': {e}")
 
     def excluir_repositorio(self, nome_repositorio: str) -> None:   
-        usuario = self.github_objeto.get_user()
-        repositorio = usuario.get_repo(nome_repositorio)
-        repositorio.delete()
-        print("Repositório excluído com sucesso!")      
+        try:
+            repositorio = self.usuario.get_repo(nome_repositorio)
+            repositorio.delete()
+            print("Repositório excluído com sucesso!")    
+
+        except GithubException as e:
+            raise RuntimeError(f"Erro ao excluir repositório '{nome_repositorio}': {e}")
