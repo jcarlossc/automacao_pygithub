@@ -18,14 +18,17 @@ class AutomacaoGithub:
         except GithubException as e:
             raise RuntimeError(f"Erro ao listar repositórios: {e}")
 
-    def criar_repositorio(self, nome: str, descricao: str) -> None:
-        usuario = self.github_objeto.get_user()
-        novo_repositorio = usuario.create_repo(
-            name = nome,
-            description = descricao,
-            private = False
-        )
-        print(f"Repositório criado: {novo_repositorio.html_url}")
+    def criar_repositorio(self, nome_repositorio: str, descricao: str) -> None:
+        try:
+            novo_repositorio = self.usuario.create_repo(
+                name = nome_repositorio,
+                description = descricao,
+                private = False
+            )
+            print(f"Repositório criado: {novo_repositorio.html_url}")
+
+        except GithubException as e:
+            raise RuntimeError(f"Erro ao criar repositório '{nome_repositorio}': {e}")    
 
     def criar_readme(self, nome_repositorio: str, conteudo: str) -> None:
         usuario = self.github_objeto.get_user()
