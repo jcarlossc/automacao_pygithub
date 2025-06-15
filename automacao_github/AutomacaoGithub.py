@@ -31,11 +31,14 @@ class AutomacaoGithub:
             raise RuntimeError(f"Erro ao criar repositório '{nome_repositorio}': {e}")    
 
     def criar_readme(self, nome_repositorio: str, conteudo: str) -> None:
-        usuario = self.github_objeto.get_user()
-        repositorio = usuario.get_repo(nome_repositorio)
-        content = conteudo
-        repositorio.create_file("README.md", 'Adicionando README', content)
-        print(f"Arquivo README criado com sucesso!")
+        try:
+            repositorio = self.usuario.get_repo(nome_repositorio)
+            content = conteudo
+            repositorio.create_file("README.md", 'Adicionando README', content)
+            print(f"Arquivo README criado com sucesso!")
+
+        except GithubException as e:
+            raise RuntimeError(f"Erro ao criar README.md em '{repositorio.name}': {e}")
 
     def criar_gitignore_python(self, nome_repositorio: str) -> None:  
         usuario = self.github_objeto.get_user()
