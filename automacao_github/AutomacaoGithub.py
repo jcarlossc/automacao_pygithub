@@ -20,9 +20,34 @@ class AutomacaoGithub:
         )
         print(f"Repositório criado: {novo_repositorio.html_url}")
 
-    def criar_readme(self, repositorio: str, conteudo: str) -> None:
+    def criar_readme(self, nome_repositorio: str, conteudo: str) -> None:
         usuario = self.github_objeto.get_user()
-        repositorio = usuario.get_repo(repositorio)
+        repositorio = usuario.get_repo(nome_repositorio)
         content = conteudo
         repositorio.create_file("README.md", 'Adicionando README', content)
         print(f"Arquivo README criado com sucesso!")
+
+    def criar_gitignore_python(self, nome_repositorio: str) -> None:  
+        usuario = self.github_objeto.get_user()
+        repositorio = usuario.get_repo(nome_repositorio)   
+        conteudo_gitignore = """
+        # Byte-compiled / optimized / DLL files
+        __pycache__/
+        *.py[cod]
+        *.so
+
+        # Virtual environment
+        venv/
+        env/
+
+        # VS Code
+        .vscode/
+        """
+        repositorio.create_file(
+            path=".gitignore",
+            message="Adiciona arquivo .gitignore padrão para Python",
+            content=conteudo_gitignore,
+            branch="main"
+        )
+
+        print("Repositório criado com .gitignore!")
