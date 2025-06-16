@@ -9,16 +9,17 @@ Este é um projeto simples que, com a utilização do módulo pyGithub, implemen
 * Excluir repositório
 
 ## Gerar o token:
-1- Logar na plataforma Github
-2- No canto superior direiro, clique na foto do perfil e novamente em Settings
-3- No menu do lado esquerdo, clique no último item, Developer settings
-4- Ainda no meu do lado esquerdo, abra Personal access tokens e clique em Tokens(classic)
-5- Clique em Generate new token e novamente em Generate new token(classic)
-6- Caso queira, dê um nome ao token
-7- Escolha o tempo para o token Expirar
-8- Para que tudo funcione corretamente, na aba Select scopes selecione repo e delete_repo.
-9- Por fim, clique em Generate token
-
+<ol>
+    <li>Logar na plataforma Github</li>
+    <li>No canto superior direiro, clique na foto do perfil e novamente em Settings</li>
+    <li>No menu do lado esquerdo, clique no último item, Developer settings</li>
+    <li>Ainda no meu do lado esquerdo, abra Personal access tokens e clique em Tokens(classic)</li>
+    <li>Clique em Generate new token e novamente em Generate new token(classic)</li>
+    <li>Caso queira, dê um nome ao token</li>
+    <li>Escolha o tempo para o token Expirar</li>
+    <li>Para que tudo funcione corretamente, na aba Select scopes selecione repo e delete_repo.</li>
+    <li>Por fim, clique em Generate token</li>
+</ol>
 ## Ferramentas utilizadas:
 * Linguagem de programação Python 3.9.13
 * Ambiente virtual VENV
