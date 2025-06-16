@@ -8,9 +8,16 @@ Este é um projeto simples que, com a utilização do módulo pyGithub, implemen
 * Criar arquivo gitignore
 * Excluir repositório
 
-
-
-Venv: ambiente virtual em Python isola dependências do projeto, evitando conflitos com pacotes globais do sistema. Ele permite que cada projeto tenha suas próprias bibliotecas e versões específicas.
+## Gerar o token:
+1- Logar na plataforma Github
+2- No canto superior direiro, clique na foto do perfil e novamente em Settings
+3- No menu do lado esquerdo, clique no último item, Developer settings
+4- Ainda no meu do lado esquerdo, abra Personal access tokens e clique em Tokens(classic)
+5- Clique em Generate new token e novamente em Generate new token(classic)
+6- Caso queira, dê um nome ao token
+7- Escolha o tempo para o token Expirar
+8- Para que tudo funcione corretamente, na aba Select scopes selecione repo e delete_repo.
+9- Por fim, clique em Generate token
 
 ## Ferramentas utilizadas:
 * Linguagem de programação Python 3.9.13
